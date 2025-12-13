@@ -8,9 +8,7 @@ public class EnemyManager {
 
     ArrayList<Enemy> enemies = new ArrayList<>();
     Random rand = new Random();
-    // Higher value -> lower spawn frequency (was 40)
     private int spawnChance = 80;
-    // Missile drops spawn less frequently and grant missiles when collected
     private int spawnDropChance = 400;
 
     ArrayList<MissileDrop> drops = new ArrayList<>();
@@ -20,7 +18,6 @@ public class EnemyManager {
     public void updateEnemies(ScoreManager scoreManager) {
         if (rand.nextInt(spawnChance) == 0) {
             int maxX = Math.max(1, GamePanel.WIDTH - Enemy.WIDTH);
-            // try a few times to find a spawn x that isn't too close to others
             boolean spawned = false;
             for (int attempt = 0; attempt < 10 && !spawned; attempt++) {
                 int sx = rand.nextInt(maxX);
@@ -53,7 +50,6 @@ public class EnemyManager {
                 int cx = e.x + e.width / 2;
                 int cy = Math.min(GamePanel.HEIGHT, e.y + e.height / 2);
                 addFloatingText("-10", cx, cy, new Color(255, 80, 80));
-                AudioManager.play("letGo.wav");
                 enemies.remove(i);
                 i--;
             }
