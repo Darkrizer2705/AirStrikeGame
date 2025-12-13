@@ -9,24 +9,20 @@ public class AirStrikeGame extends JFrame {
     public AirStrikeGame() {
         setTitle("Air Strike System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setUndecorated(true); 
+        // allow the user to resize the window and keep window decorations
+        setResizable(true);
+        setUndecorated(false);
 
         GamePanel panel = new GamePanel();
         add(panel);
+
+        // Let the panel determine preferred size (if implemented) and pack.
         pack();
 
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        
-        if (gd.isFullScreenSupported()) {
-            gd.setFullScreenWindow(this);
-        } else {
-            
-            setLocationRelativeTo(null);
-            setExtendedState(JFrame.MAXIMIZED_BOTH);
-        }
+        // Do NOT force fullscreen. Allow windowed mode so the user can resize the frame.
+        setLocationRelativeTo(null);
 
+        // Make the frame visible after packing
         setVisible(true);
     }
 
