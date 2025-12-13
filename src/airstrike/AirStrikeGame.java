@@ -6,11 +6,15 @@ public class AirStrikeGame extends JFrame {
 
     public AirStrikeGame() {
         setTitle("Air Strike System");
-        setSize(500, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        add(new GamePanel());
+        GamePanel panel = new GamePanel();
+        add(panel);
+        pack();
+
+        // center on screen
+        setLocationRelativeTo(null);
 
         setVisible(true);
     }

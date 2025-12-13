@@ -1,12 +1,33 @@
 package airstrike;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class Enemy {
 
     int x, y;
-    int width = 40;
-    int height = 40;
+    public static final int WIDTH = 60;
+    public static final int HEIGHT = 60;
+    int width = WIDTH;
+    int height = HEIGHT;
+
+    private static BufferedImage enemyImg = null;
+
+    static {
+        try {
+            java.io.InputStream is = Enemy.class.getResourceAsStream("/airstrike/images/enemy.png");
+            if (is != null) {
+                enemyImg = ImageIO.read(is);
+            } else {
+                enemyImg = ImageIO.read(new File("assets/images/enemy.png"));
+            }
+        } catch (IOException e) {
+            enemyImg = null;
+        }
+    }
 
     public Enemy(int x) {
         this.x = x;
@@ -22,7 +43,11 @@ public class Enemy {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(x, y, width, height);
+        if (enemyImg != null) {
+            g.drawImage(enemyImg, x, y, width, height, null);
+        } else {
+            g.setColor(Color.RED);
+            g.fillRect(x, y, width, height);
+        }
     }
 }
