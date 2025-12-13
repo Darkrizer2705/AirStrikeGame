@@ -112,18 +112,29 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setFont(new Font("Arial", Font.PLAIN, 14));
         g.drawString("Missiles: " + player.getMissileCount(), 20, 40);
 
+        // Mute indicator (top-right)
+        if (AudioManager.isMuted()) {
+            String txt = "Muted (M to toggle)";
+            FontMetrics fm = g.getFontMetrics();
+            int tw = fm.stringWidth(txt);
+            g.setColor(new Color(255, 100, 100));
+            g.drawString(txt, getWidth() - tw - 10, 120);
+            g.setColor(Color.WHITE);
+        }
+
         // Controls panel
         int panelX = 600;
         int panelY = 10;
         int lineHeight = 16;
         g.setColor(new Color(0,0,0,150));
-        g.fillRect(panelX - 10, panelY - 10, 170, 95);
+        g.fillRect(panelX - 10, panelY - 10, 170, 110);
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 12));
         g.drawString("Controls:", panelX, panelY + (lineHeight * 0));
         g.drawString("Left/Right: Move", panelX, panelY + (lineHeight * 1));
         g.drawString("Space: Shoot", panelX, panelY + (lineHeight * 2));
         g.drawString("P: Pause", panelX, panelY + (lineHeight * 3));
+        g.drawString("M: Mute", panelX, panelY + (lineHeight * 4));
         player.draw(g);
         enemyManager.draw(g);
     }
@@ -160,6 +171,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         if (collisionManager.checkPlayerHit(player, enemyManager)) {
             gameOver = true;
+            AudioManager.play("gameOver.wav");
             timer.stop();
         }
 

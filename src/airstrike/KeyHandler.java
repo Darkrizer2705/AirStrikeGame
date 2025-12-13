@@ -20,6 +20,13 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        // Mute toggle — works at any time
+        if (e.getKeyCode() == KeyEvent.VK_M) {
+            AudioManager.toggleMute();
+            panel.repaint();
+            return;
+        }
+
         if (!panel.gameStarted && e.getKeyCode() == KeyEvent.VK_ENTER) {
             panel.gameStarted = true;
             panel.timer.start();

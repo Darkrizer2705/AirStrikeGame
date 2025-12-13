@@ -52,6 +52,7 @@ public class Player {
 
         int mx = x + width / 2 - Missile.WIDTH / 2;
         missiles.add(new Missile(mx, y));
+        AudioManager.play("shoot.wav");
         missileCount--;
     }
 
