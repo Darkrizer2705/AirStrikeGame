@@ -2,7 +2,6 @@ package airstrike;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import airstrike.AudioManager;
 
 public class KeyHandler implements KeyListener {
 
@@ -20,12 +19,6 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-        // Global mute toggle: press 'M' to mute/unmute audio
-        if (e.getKeyCode() == KeyEvent.VK_M) {
-            AudioManager.toggleMute();
-            return;
-        }
 
         if (!panel.gameStarted && e.getKeyCode() == KeyEvent.VK_ENTER) {
             panel.gameStarted = true;
