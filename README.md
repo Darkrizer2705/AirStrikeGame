@@ -1,17 +1,16 @@
+AirStrike Game – How to Run
 
-AirStrike Game – How to Run from Terminal
-
-This project is a simple 2D Air Strike game developed using Java AWT and Swing only.
+This project is a 2D Air Strike game developed using Java AWT and Swing only.
 
 ---
 
 ## Requirements
 
-1. Java JDK 8 or above must be installed
-2. Terminal / Command Prompt / PowerShell
-3. Windows OS (commands given for Windows)
+1. Java JDK 8 or above installed
+2. Command Prompt / PowerShell
+3. Windows OS
 
-To check Java installation:
+Check Java installation:
 java -version
 javac -version
 
@@ -43,39 +42,48 @@ AirStrikeGame
 │   └── background.png
 │
 ├── audio
-│   └── (audio files if any)
+│   └── (audio files)
 │
 └── bin
 └── (compiled class files)
 
 ---
 
-## Steps to Compile the Project
+## METHOD 1: Run from Terminal
 
 Step 1: Open Command Prompt / PowerShell
 
-Step 2: Go to the project root folder
+Step 2: Go to project root folder
+Example:
+cd C:\Users\shriv\OneDrive\Desktop\AirStrikeGame
 
-Step 3: Compile all Java files
+Step 3: Compile the project
 javac -d bin src\airstrike*.java
 
-This command compiles all source files and stores the .class files in the bin folder.
+Step 4: Run the game
+java -cp bin airstrike.AirStrikeGame
 
 ---
 
-## Steps to Run the Game
+## METHOD 2: Run using Executable (.jar) File
 
-After compilation, run the following command:
+Step 1: Compile the project (if not already compiled)
+javac -d bin src\airstrike*.java
 
-java -cp bin airstrike.AirStrikeGame
+Step 2: Create executable JAR file
+jar cfe AirStrikeGame.jar airstrike.AirStrikeGame -C bin .
 
-The game window will open if compilation is successful.
+Step 3: Run the executable JAR
+Double-click AirStrikeGame.jar
+
+OR run from terminal:
+java -jar AirStrikeGame.jar
 
 ---
 
 ## Controls
 
-Arrow Keys  - Move the player
+Arrow Keys  - Move player
 Spacebar   - Fire missile
 Esc         - Exit game
 
@@ -83,29 +91,26 @@ Esc         - Exit game
 
 ## Common Issues
 
-1. If images do not load:
+1. Game does not open when double-clicking JAR:
 
-   * Make sure the images folder is present in the project root
-   * Check image file names and paths
+   * Java must be installed
+   * Try running using: java -jar AirStrikeGame.jar
 
-2. If audio does not play:
+2. Images or audio not loading:
 
-   * Ensure audio files are in the audio folder
-   * Prefer .wav format
+   * Ensure images and audio folders are in the same directory as the JAR file
 
 3. Class not found error:
 
-   * Run commands from the project root directory
-   * Ensure bin folder exists
+   * Ensure correct package name: airstrike
 
 ---
 
 ## Notes
 
-1. No external libraries are used
-2. Only Java AWT and Swing packages are used
-3. Project is suitable for academic labs and viva exams
+1. Only Java AWT and Swing are used
+2. No external libraries
+3. Suitable for academic labs and viva
 
 ---
-
 
